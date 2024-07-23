@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>健康レポート</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>健康レポート</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>日付</th>
+                <th>体重 (kg)</th>
+                <th>身長 (cm)</th>
+                <th>BMI</th>
+                <th>体脂肪率 (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="data : ${healthDataList}">
+                <td th:text="${formattedDate}"></td>
+                <td th:text="${data.weight}"></td>
+                <td th:text="${data.height}"></td>
+                <td th:text="${#numbers.formatDecimal(data.bmi, 1, 1)}"></td>
+                <td th:text="${#numbers.formatDecimal(data.bodyFatPercentage, 1, 1)}"></td>
+            </tr>
+        </tbody>
+    </table>
+	<a th:href="@{/resultBack}" class="button">戻る</a>
+</body>
+</html>

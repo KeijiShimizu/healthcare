@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>計算結果</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        h4 {
+            text-align: left;
+        }
+        p {
+            font-size: 18px;
+            color: #666;
+            margin: 10px 0;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #5cb85c;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #4cae4c;
+        }
+        .inner {
+            margin-top: 20px;
+        }
+        .table-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        table th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        .dietTable {
+            width: 100%;
+        }
+        .textBox {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>計算結果</h1>
+        <p>BMI: <span th:text="${#numbers.formatDecimal(bmi, 1, 1)}"></span></p>
+        <p>体脂肪率: <span th:text="${#numbers.formatDecimal(bodyFatPercentage, 1, 1)}"></span>%</p>
+		<div class="link-container">
+		            <a th:href="@{/report}">過去のデータを表示</a>
+		 </div>
+        <div class="inner">
+            <div class="table-container">
+                <div class="dietTable">
+                    <h4>■女性の適正体脂肪率の目安</h4>
+                    <table summary="料金表">
+                        <thead>
+                            <tr>
+                                <th width="50%">～19.9%</th>
+                                <td>痩せ</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>20～24.9%</th>
+                                <td>適正</td>
+                            </tr>
+                            <tr>
+                                <th>25～29.9%</th>
+                                <td>軽い肥満</td>
+                            </tr>
+                            <tr>
+                                <th>30%～</th>
+                                <td>肥満</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>※女性の場合､17%以下になると婦人科系トラブルの原因にもなりかねないので注意が必要です｡</p>
+                </div>
+                <div class="dietTable">
+                    <h4>■男性の適正体脂肪率の目安</h4>
+                    <table summary="料金表">
+                        <thead>
+                            <tr>
+                                <th width="50%">～14.9%</th>
+                                <td>痩せ</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>15～19.9%</th>
+                                <td>適正</td>
+                            </tr>
+                            <tr>
+                                <th>20～24.9%</th>
+                                <td>軽い肥満</td>
+                            </tr>
+                            <tr>
+                                <th>25%～</th>
+                                <td>肥満</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="dietTable">
+                    <h4>■BMIの目安</h4>
+                    <table summary="BMI表">
+                        <thead>
+                            <tr>
+                                <th width="50%">～18.5</th>
+                                <td>低体重（痩せ）</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>18.5～24.9</th>
+                                <td>適正体重</td>
+                            </tr>
+                            <tr>
+                                <th>25～29.9</th>
+                                <td>肥満（1度）</td>
+                            </tr>
+                            <tr>
+                                <th>30～34.9</th>
+                                <td>肥満（2度）</td>
+                            </tr>
+                            <tr>
+                                <th>35～39.9</th>
+                                <td>肥満（3度）</td>
+                            </tr>
+                            <tr>
+                                <th>40～</th>
+                                <td>肥満（4度）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="inner">
+            <h4>■一週間の夕食献立表</h4>
+            <ul>
+                <li th:each="meal : ${mealPlan}" th:text="${meal}"></li>
+            </ul>
+        </div>
+        <a href="/">戻る</a>
+    </div>
+</body>
+</html>
