@@ -28,18 +28,6 @@ public class User implements Serializable {
 	private String gender;
 	
 	
-//	public double calculateBMI() {
-//		double heightInMeters = height / 100;
-//		return weight / (heightInMeters * heightInMeters);
-//	}
-//	
-//	public double calculateBodyFatPercentage() {
-//		double bmi = calculateBMI();
-//		if (roleName == RoleName.MALE) {
-//			return 1.20 * bmi + 0.23 * age - 16.2;
-//		} else {
-//			return 1.20 * bmi + 0.23 * age - 5.4;
-//		}
-//	}
+
 	
 }
