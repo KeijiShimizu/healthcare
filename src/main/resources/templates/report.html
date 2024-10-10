@@ -48,11 +48,11 @@
         </thead>
         <tbody>
             <tr th:each="data : ${healthDataList}">
-                <td th:text="${formattedDate}"></td>
-                <td th:text="${data.weight}"></td>
-                <td th:text="${data.height}"></td>
-                <td th:text="${#numbers.formatDecimal(data.bmi, 1, 1)}"></td>
-                <td th:text="${#numbers.formatDecimal(data.bodyFatPercentage, 1, 1)}"></td>
+                <td th:text="${data.formattedDate}"></td>
+                <td th:text="${data.userHealthData.weight}"></td>
+                <td th:text="${data.userHealthData.height}"></td>
+                <td th:text="${#numbers.formatDecimal(data.userHealthData.bmi, 1, 1)}"></td>
+                <td th:text="${#numbers.formatDecimal(data.userHealthData.bodyFatPercentage, 1, 1)}"></td>
             </tr>
         </tbody>
     </table>
